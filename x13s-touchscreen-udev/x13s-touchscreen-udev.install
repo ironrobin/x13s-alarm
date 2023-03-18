@@ -1,12 +1,12 @@
 post_install() {
-  echo 1-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind
+  echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind
 }
 
 post_upgrade() {
-  echo 1-0010 > /sys/bus/i2c/drivers/i2c_hid_of/unbind
-  echo 1-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind
+  echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/unbind
+  echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind
 }
 
 post_remove() {
-  echo 1-0010 > /sys/bus/i2c/drivers/i2c_hid_of/unbind
+  echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/unbind
 }

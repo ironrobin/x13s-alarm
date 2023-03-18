@@ -1,2 +1,2 @@
 ACTION=="add" \
-, RUN+="/bin/bash -c 'echo 1-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind'"
+, RUN+="/bin/bash -c 'echo 4-0010 > /sys/bus/i2c/drivers/i2c_hid_of/bind'"

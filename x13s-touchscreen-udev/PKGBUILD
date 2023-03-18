@@ -2,14 +2,14 @@
 
 pkgname=x13s-touchscreen-udev
 pkgver=1.0.2
-pkgrel=0
+pkgrel=1
 pkgdesc='Udev rules to allow touchscreen on ThinkPad X13s'
 arch=('any')
 license=('GPL2')
 source=('72-x13s-touchscreen.rules')
 depends=('systemd')
 install='x13s-touchscreen-udev.install'
-md5sums=('5b854c317969d5579768f0b139bf2960')
+md5sums=('927a11fbd8fc00e9f458dd4a5f0529c9')
 
 package() {
   mkdir -p $pkgdir/usr/lib/udev/rules.d/

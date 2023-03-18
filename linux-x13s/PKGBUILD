@@ -7,28 +7,31 @@ pkgbase=linux-x13s
 _srcname=linux-lenovo-x13s
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.2"
-pkgrel=3
+pkgver="6.3"
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'vboot-utils' 'dtc')
 options=('!strip')
-source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linux-6.2.y"
+source=("${_srcname}::git+https://github.com/jhovold/linux#branch=wip/sc8280xp-v6.3-rc2-wifi"
         'config'
         'kernel.keyblock'
         'kernel_data_key.vbprivk'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook')
+        '90-linux.hook'
+        'fix-mutter.patch'
+        )
 md5sums=('SKIP'
-         '13476d50870d90c0937d096342bd5d8a'
+         '1e926a0e7c3e074a7229aa77559a9329'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'
          '0a5f16bfec6ad982a2f6782724cca8ba'
-         '3dc88030a8f2f5a5f97266d99b149f77')
-MAKEFLAGS="-j8"
+         '3dc88030a8f2f5a5f97266d99b149f77'
+         'SKIP')
+MAKEFLAGS="-j10"
 prepare() {
   cd $_srcname
 
@@ -42,7 +45,7 @@ prepare() {
   # We are using a custom tree, not needed
 
   # ALARM patches
-  # Nothing to patch right now
+  patch -Np1 -i ../fix-mutter.patch
 
   cat "${srcdir}/config" > ./.config
 }

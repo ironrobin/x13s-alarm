@@ -1,6 +1,6 @@
 pkgname="x13s-firmware"
 pkgdesc="ThinkPad X13s firmware"
-pkgver=20230310
+pkgver=20230404
 pkgrel=1
 arch=("any")
 options=('!strip')
@@ -17,6 +17,7 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firm
         "a690_sqe.fw"
         "hpnv21.8c"
         "board-2.bin"
+        "qcvss8280.mbn"
         )
 sha256sums=('SKIP'
             'd983a32e0c873963a75dfd1197a00fa2edadd8455caab9d5d65ec2b51c65d132'
@@ -24,6 +25,7 @@ sha256sums=('SKIP'
             '01cacafc48ae96f061caa325a294a91024e626403b97fa556a9bcc42e4de6768'
             '8b6a1e2d4233e0a17d5c2dce568386fe9c7974b872da47900242c3485f57d0f7'
             '78ba51c433e4bf531f6565ab51928d41fc283289074547cabbbb489eb37b3e48'
+            'c81f3f060f69c5940121fe6e36da20d9c864d78b3bbffe361ec8878a7f9bd7b3'
             )
 
 prepare() {
@@ -46,6 +48,8 @@ package_x13s-firmware() {
   cp -rv "${_srcdir}"/qcom "${pkgdir}"/usr/lib/firmware
   cp -rv "${_srcdir}"/ath11k "${pkgdir}"/usr/lib/firmware
   cp -rv "${_srcdir}"/rtl_nic "${pkgdir}"/usr/lib/firmware
+  # Install video acceleration support (venus) firmware for X13s
+  cp qcvss8280.mbn "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp/LENOVO/21BX
   # Install bluetooth firmware for X13s
   cp hpnv21.8c "${pkgdir}"/usr/lib/firmware/qca
   # Install gpu firmware for X13s

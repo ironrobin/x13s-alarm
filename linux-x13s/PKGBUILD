@@ -24,7 +24,7 @@ source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linu
         'fix-mutter.patch'
         )
 md5sums=('SKIP'
-         '1e926a0e7c3e074a7229aa77559a9329'
+         '98e184e9267e89efe7ad0c0d65ffd489'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

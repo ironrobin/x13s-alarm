@@ -22,17 +22,17 @@ for i in mesa-a690; do
 	status=13
 	git submodule update --init $i
 	cd $i
-	for i in $(sudo -u builduser makepkg --packagelist); do
-		package=$(basename $i)
-		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \
-			&& echo "Warning: $package already built, did you forget to bump the pkgver and/or pkgrel? It will not be rebuilt."
-	done
 	# if building mesa, import Dylan Baker's keys
 	echo "checking for package $i"
 	if [ $i == "mesa-a690" ]; then
 		echo "importing keys for mesa-a690"
 		sudo -u builduser gpg --recv-keys 4C95FAAB3EB073EC
 	fi
+	for i in $(sudo -u builduser makepkg --packagelist); do
+		package=$(basename $i)
+		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \
+			&& echo "Warning: $package already built, did you forget to bump the pkgver and/or pkgrel? It will not be rebuilt."
+	done
 	sudo -u builduser bash -c 'export MAKEFLAGS=j$(nproc) && makepkg --sign -s --noconfirm'||status=$?
 
 	# Package already built is fine.

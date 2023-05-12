@@ -1,0 +1,54 @@
+name: Build packages
+workflow_dispatch: {}
+jobs:
+  build:
+    runs-on: [self-hosted, linux, ARM64]
+    environment: "signing key"
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Build packages
+      run: |
+        echo "$GITHUB_REPOSITORY" > ./repo
+        echo -n "$GPG_SIGNING_KEY" > ./gpg_key
+        file ./gpg_key
+        docker run -t -v $PWD:/build archlinux /bin/bash /build/entrypoint.sh
+        ls -l .
+      env:
+        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+        
+    - name: generate tag
+      id: tag
+      run: |
+        count=$(git rev-list --count HEAD)
+        hash=$(git rev-parse --short HEAD)
+        echo "::set-output name=tag::r${count}.${hash}"
+        
+    - name: Print sha512sums
+      run: sha512sum */*.pkg.tar.*
+
+    - name: Upload Packages Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: x13s-packages-${{ steps.tag.outputs.tag }}
+        path: |
+          ${{ github.workspace }}/*.pkg.tar.*
+          ${{ github.workspace }}/*-x13s.files*
+          ${{ github.workspace }}/*-x13s.db*
+
+    - name: Release
+      if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[no rel]') }}
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ${{ github.workspace }}/*.pkg.tar.*
+          ${{ github.workspace }}/*-x13s.files*
+          ${{ github.workspace }}/*-x13s.db*
+        tag_name: packages #${{ steps.tag.outputs.tag }}
+          #draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
+          #prerelease: ${{ contains(github.event.head_commit.message, '[pre]') }}
+          #generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -8,7 +8,7 @@ jobs:
     - name: cleanup work dir
       run: | 
         echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf $PWD
-        
+        mkdir -p $PWD
     - name: checkout repo
       uses: actions/checkout@v2
       with:

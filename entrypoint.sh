@@ -17,6 +17,7 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
+gpg --recv-keys 8D8E31AFC32428A6
 
 for i in mesa-a690; do 
 	status=13

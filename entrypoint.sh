@@ -27,8 +27,10 @@ for i in mesa-a690; do
 		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \
 			&& echo "Warning: $package already built, did you forget to bump the pkgver and/or pkgrel? It will not be rebuilt."
 	done
-	# if i is mesa-a690, then import Dylan Baker's keys
+	# if building mesa, import Dylan Baker's keys
+	echo "checking for package $i"
 	if [ $i == "mesa-a690" ]; then
+		echo "importing keys for mesa-a690"
 		sudo -u builduser gpg --recv-keys 4C95FAAB3EB073EC
 	fi
 	sudo -u builduser bash -c 'export MAKEFLAGS=j$(nproc) && makepkg --sign -s --noconfirm'||status=$?

@@ -24,6 +24,7 @@ for i in x13s-touchscreen-udev alsa-ucm-conf-x13s x13s-firmware mesa-a690 linux-
 	cd $i
 
 	# mesa needs Dylan Baker's keys
+	echo $i
 	if [ $i == "mesa-a690" ]; then
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 	fi

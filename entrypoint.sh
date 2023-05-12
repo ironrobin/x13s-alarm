@@ -37,7 +37,7 @@ for i in x13s-touchscreen-udev; do
 done
 
 cp */*.pkg.tar.* ./
-repo-add --sign ./$repo_owner-x13s.db.tar.gz ./*.pkg.tar.zst
+repo-add --sign ./$repo_owner-x13s.db.tar.gz ./*.pkg.tar.xz
 
 for i in *.db *.files; do
 cp --remove-destination $(readlink $i) $i

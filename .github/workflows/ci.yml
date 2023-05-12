@@ -6,8 +6,9 @@ jobs:
     environment: "signing key"
     steps:
     - name: cleanup work dir
-        run: | 
-          echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf $PWD
+      run: | 
+        echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf $PWD
+        
     - name: checkout repo
       uses: actions/checkout@v2
       with:

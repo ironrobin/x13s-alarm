@@ -18,16 +18,16 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 
-for i in mesa-a690; do 
+for i in x13s-touchscreen-udev alsa-ucm-conf-x13s x13s-firmware mesa-a690 linux-x13s linux-x13s-archiso; do 
 	status=13
 	git submodule update --init $i
 	cd $i
-	# if building mesa, import Dylan Baker's keys
-	echo "checking for package $i"
+
+	# mesa needs Dylan Baker's keys
 	if [ $i == "mesa-a690" ]; then
-		echo "importing keys for mesa-a690"
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 	fi
+
 	for i in $(sudo -u builduser makepkg --packagelist); do
 		package=$(basename $i)
 		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \

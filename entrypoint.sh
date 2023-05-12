@@ -26,7 +26,7 @@ for i in mesa-a690; do
 	echo "checking for package $i"
 	if [ $i == "mesa-a690" ]; then
 		echo "importing keys for mesa-a690"
-		sudo -u builduser gpg --recv-keys 4C95FAAB3EB073EC
+		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 	fi
 	for i in $(sudo -u builduser makepkg --packagelist); do
 		package=$(basename $i)

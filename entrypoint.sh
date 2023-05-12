@@ -33,7 +33,7 @@ for i in linux-x13s-archiso; do
 		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \
 			&& echo "Warning: $package already built, did you forget to bump the pkgver and/or pkgrel? It will not be rebuilt."
 	done
-	sudo -u builduser bash -c 'export MAKEFLAGS=j$(nproc) && makepkg --sign -s --noconfirm'||status=$?
+	sudo -u builduser bash -c 'export MAKEFLAGS=-j$(nproc) && makepkg --sign -s --noconfirm'||status=$?
 
 	# Package already built is fine.
 	if [ $status != 13 ]; then

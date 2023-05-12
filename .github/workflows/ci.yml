@@ -40,7 +40,7 @@ jobs:
           ${{ github.workspace }}/*-x13s.db*
 
     - name: Release
-      if: ${{ github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[no rel]') }}
+      if: ${{ github.ref == 'refs/heads/trunk' && !contains(github.event.head_commit.message, '[no rel]') }}
       uses: softprops/action-gh-release@v1
       with:
         files: |

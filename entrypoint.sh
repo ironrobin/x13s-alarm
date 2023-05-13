@@ -18,7 +18,7 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 
-for i in linux-x13s; do 
+for i in linux-x13s-rc; do
 	status=13
 	git submodule update --init $i
 	cd $i

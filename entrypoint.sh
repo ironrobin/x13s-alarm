@@ -18,14 +18,14 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 
-for i in linux-x13s-rc; do
+for i in ; do
 	status=13
 	git submodule update --init $i
 	cd $i
 
 	# mesa needs Dylan Baker's keys
 	echo $i
-	if [ $i == "mesa-a690" ]; then
+	if [ $i == "alsa-ucm-conf-x13s" "linux-x13s" "linux-x13s-archiso" "linux-x13s-rc" "mesa-a690" "x13s-firmware" "x13s-touchscreen-udev" ]; then
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 	fi
 

@@ -3,11 +3,14 @@
 
 buildarch=8
 
+_rcver=6.4
+_rcrel=1
+
 pkgbase=linux-x13s-rc
-_srcname=linux-lenovo-x13s
+_srcname=linux-${_rcver}-rc${_rcrel}
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.4"
+pkgver=${_rcver}.rc${_rcrel}
 pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"

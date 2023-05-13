@@ -51,22 +51,22 @@ prepare() {
 
   # https://gitlab.freedesktop.org/mesa/mesa/-/issues/7110
   # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20765
-  patch -Np1 -i ../0001-intel-fs-fix-scheduling-of-HALT-instructions.patch
+  # patch -Np1 -i ../0001-intel-fs-fix-scheduling-of-HALT-instructions.patch
 
   # https://bugs.archlinux.org/task/78137
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1826583
   # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21646
-  patch -Np1 -i ../0002-egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
+  # patch -Np1 -i ../0002-egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
 
   # https://bugs.archlinux.org/task/78142
   # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21647
-  patch -Np1 -i ../0003-vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch
+  # patch -Np1 -i ../0003-vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch
   
   # Fix build failure with rust-bindgen 0.65.1
-  patch -Np1 -i ../0004-rusticl-Fix-bindgen-invocation.patch
+  # patch -Np1 -i ../0004-rusticl-Fix-bindgen-invocation.patch
 
   # Add A60 support for x13s
-  patch -Np1 -i ../add-a690-support.patch
+  # patch -Np1 -i ../add-a690-support.patch
 }
 
 build() {

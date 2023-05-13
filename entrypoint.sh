@@ -23,10 +23,11 @@ for i in "alsa-ucm-conf-x13s" "linux-x13s" "linux-x13s-archiso" "linux-x13s-rc" 
 	git submodule update --init $i
 	cd $i
 
-	# mesa needs Dylan Baker's keys
+	# mesa needs Dylan Baker/Eric Engestrom keys
 	echo $i
 	if [ $i == "mesa-a690" ]; then
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
+		gpg --homedir /home/builduser/.gnupg --recv-keys 8D8E31AFC32428A6
 	fi
 
 	for i in $(sudo -u builduser makepkg --packagelist); do

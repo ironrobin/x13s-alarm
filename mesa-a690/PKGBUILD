@@ -31,7 +31,7 @@ source=(https://mesa.freedesktop.org/archive/mesa-${pkgver}.tar.xz{,.sig}
         0004-rusticl-Fix-bindgen-invocation.patch
         add-a690-support.patch
         LICENSE)
-sha512sums=('52c778de61daa406c6a1e96a657e9b6fdcc71c8cfda80b7f53acc6470556c7d502c057b9481bb0c3d57ef0263263413fd0d25d53ebf5aa0246fbcc3309de64ae'
+sha512sums=('bbcfd0dd8e5414826631e80edbbe48218115a7461ef4ac1f2e4e090a48d6c0e1ab3b51dd45e988d5f1572f29bfc03c33769263c0f3e04033138d5b1ec102e8c9'
             'SKIP'
             '563bf3bf1407518214b5c30248514233bae0345f15dc15e2a6a8121f75262a09d7c3a15c82d57a133b634ed926c33f214a8911ebf165f25778d2758f2b32e6df'
             'cdbb46a2f8a2f6512658bd563d4dc789a37f2f088d79e7d06d4248ae114fbd50f06c83440fc6e0e8127f7781b5f4db93381c22a8e878bbee275db6bd6b0370e7'

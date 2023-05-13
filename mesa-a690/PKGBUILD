@@ -86,6 +86,7 @@ build() {
     -D gallium-drivers=r300,r600,radeonsi,freedreno,nouveau,swrast,virgl,zink,d3d12${GALLIUM} \
     -D vulkan-drivers=amd,swrast,broadcom,panfrost,virtio-experimental,freedreno \
     -D vulkan-layers=device-select,overlay \
+    -D android-libbacktrace=disabled \
     -D dri3=enabled \
     -D egl=enabled \
     -D gallium-extra-hud=true \

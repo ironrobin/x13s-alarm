@@ -18,4 +18,4 @@ sudo pacman-key --lsign-key 6ED02751500A833A
 ## Note on `linux-x13s`
 For now, you will need `efi=noruntime` as a kernel parameter to boot into the kernel.
 
-In order to get the battery working, install `pd-mapper` `qmic` `qrtr` `rmtfs` and enable `pd-mapper.service`
+In order to get the battery working, install `pd-mapper` `qmic` `qrtr` `rmtfs` and enable `pd-mapper.service`.

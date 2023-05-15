@@ -21,7 +21,6 @@ source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linu
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
-        'fix-mutter.patch'
         )
 md5sums=('SKIP'
          '98e184e9267e89efe7ad0c0d65ffd489'
@@ -30,14 +29,13 @@ md5sums=('SKIP'
          '41cb5fef62715ead2dd109dbea8413d6'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '3dc88030a8f2f5a5f97266d99b149f77'
-         'SKIP')
+         )
 
 prepare() {
   cd $_srcname
 
   echo "Setting version..."
   #scripts/setlocalversion --save-scmversion
-  echo "Hi...."
   echo "-$pkgrel" > localversion.10-pkgrel
   echo "${pkgbase#linux}" > localversion.20-pkgname
 

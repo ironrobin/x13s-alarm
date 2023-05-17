@@ -8,13 +8,13 @@ _srcname=linux-6.3
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver="6.3"
-pkgrel=10
+pkgrel=11
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'vboot-utils' 'dtc')
 options=('!strip')
-source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linux-6.3.y"
+source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linux-6.3.y-ironrobin"
         'config'
         'kernel.keyblock'
         'kernel_data_key.vbprivk'

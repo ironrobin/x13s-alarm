@@ -1,0 +1,84 @@
+meta-kms: Better handling for universal planes
+
+When looking up a plane to use with a CRTC, mutter currently picks the
+first available plane that is capable of working with the CRTC. This
+fails on systems where planes can be used with multiple CRTCs. It is
+broken because get_plane_with_type_for() it ends up providing the same
+plane to two different CRTCs (something which eventually provokes the
+SEGV discussed in https://gitlab.gnome.org/GNOME/mutter/-/issues/2398 ).
+
+Fix this by introducing logic to assume planes that can target multiple
+CRTCs will be allocated to the specific CRTCs in ascending numerical
+order (based on CRTC ID). The new logic should not change how planes
+are assigned on systems where only a single bit is set in possible_crtcs
+(although I haven't been able to do much runtime testing).
+
+This approach isn't perfect because it won't assign the most capable
+planes to the CRTCs that need them. However it avoids a crash and works
+well enough for systems with reasonably symmetric plane capabilities.
+More specifically, it allows me to run gnome-shell/wayland on my
+SC8280XP-based laptop.
+
+Signed-off-by: Daniel Thompson <daniel.thompson@linaro.org>
+Index: mutter/src/backends/native/meta-kms-device.c
+===================================================================
+--- mutter.orig/src/backends/native/meta-kms-device.c
++++ mutter/src/backends/native/meta-kms-device.c
+@@ -196,6 +196,8 @@ get_plane_with_type_for (MetaKmsDevice
+                          MetaKmsPlaneType  type)
+ {
+   GList *l;
++  uint32_t unallocated = (1  << meta_kms_crtc_get_idx(crtc)) - 1;
++  uint32_t candidates;
+ 
+   for (l = meta_kms_device_get_planes (device); l; l = l->next)
+     {
+@@ -204,6 +206,18 @@ get_plane_with_type_for (MetaKmsDevice
+       if (meta_kms_plane_get_plane_type (plane) != type)
+         continue;
+ 
++      candidates = meta_kms_plane_get_possible_crtcs (plane) & unallocated;
++      if (candidates) {
++        /*
++         * If this plane could have been allocated to a CRTC with a lower id
++         * then let's assume that is what has happened (or will happen later)
++         * and clear the corresponding bit in unallocated.
++         */
++        unallocated ^= candidates & -candidates;
++
++        continue;
++      }
++
+       if (meta_kms_plane_is_usable_with (plane, crtc))
+         return plane;
+     }
+Index: mutter/src/backends/native/meta-kms-plane.c
+===================================================================
+--- mutter.orig/src/backends/native/meta-kms-plane.c
++++ mutter/src/backends/native/meta-kms-plane.c
+@@ -84,6 +84,12 @@ meta_kms_plane_get_plane_type (MetaKmsPl
+ }
+ 
+ uint32_t
++meta_kms_plane_get_possible_crtcs (MetaKmsPlane *plane)
++{
++  return plane->possible_crtcs;
++}
++
++uint32_t
+ meta_kms_plane_get_prop_id (MetaKmsPlane     *plane,
+                             MetaKmsPlaneProp  prop)
+ {
+Index: mutter/src/backends/native/meta-kms-plane.h
+===================================================================
+--- mutter.orig/src/backends/native/meta-kms-plane.h
++++ mutter/src/backends/native/meta-kms-plane.h
+@@ -46,6 +46,8 @@ uint32_t meta_kms_plane_get_id (MetaKmsP
+ META_EXPORT_TEST
+ MetaKmsPlaneType meta_kms_plane_get_plane_type (MetaKmsPlane *plane);
+ 
++uint32_t meta_kms_plane_get_possible_crtcs (MetaKmsPlane *plane);
++
+ gboolean meta_kms_plane_is_transform_handled (MetaKmsPlane         *plane,
+                                               MetaMonitorTransform  transform);
+ 

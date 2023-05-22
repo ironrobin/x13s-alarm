@@ -23,7 +23,7 @@ source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-linu
         '90-linux.hook'
         )
 md5sums=('SKIP'
-         '98e184e9267e89efe7ad0c0d65ffd489'
+         '8287bb8a1c1c000121df92c962c07ee2'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

@@ -17,11 +17,9 @@ jobs:
       with:
         fetch-depth: '0'
     - name: Replace with local repo (less bandwidth)
-      uses: jacobtomlinson/gha-find-replace@v3
-      with:
-        find: "https://github.com/steev/linux"
-        replace: "file:///tmp/linux"
-        regex: false
+      run: |
+        sed -i 's_https://github.com/steev/linux_file:///tmp/linux_g' linux-x13s/PKGBUILD
+        cat linux-x13s/PKGBUILD
     - name: Build packages
       run: |
         echo "$GITHUB_REPOSITORY" > ./repo

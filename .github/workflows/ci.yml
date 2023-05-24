@@ -16,6 +16,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: '0'
+    - name: Replace with local repo (less bandwidth)
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: "https://github.com/steev/linux"
+        replace: "file:///tmp/linux"
+        regex: false
     - name: Build packages
       run: |
         echo "$GITHUB_REPOSITORY" > ./repo

@@ -5,8 +5,7 @@ cd /build
 repo_full=$(cat ./repo)
 repo_owner=$(echo $repo_full | cut -d/ -f1)
 repo_name=$(echo $repo_full | cut -d/ -f2)
-echo "seeing what is in /tmp"
-ls /tmp
+
 pacman-key --init
 pacman -Syu --noconfirm --needed sudo git base-devel wget
 useradd builduser -m

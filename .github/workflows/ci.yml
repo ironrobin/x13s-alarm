@@ -9,16 +9,22 @@ jobs:
       run: | 
         echo ${{ secrets.SUDO_PASSWD }} | sudo -S rm -rf $PWD
         mkdir -p $PWD
+    - name: sync local repos
+      run: |
+        echo ${{ secrets.SUDO_PASSWD }} | sudo -S /var/git/sync.sh
     - name: checkout repo
       uses: actions/checkout@v2
       with:
         fetch-depth: '0'
+    - name: Replace with local repo (less bandwidth)
+      run: |
+        sed -i 's_https://github.com/steev/linux_file:///tmp/linux_g' linux-x13s/PKGBUILD
     - name: Build packages
       run: |
         echo "$GITHUB_REPOSITORY" > ./repo
         echo -n "$GPG_SIGNING_KEY" > ./gpg_key
         file ./gpg_key
-        docker run -t -v $PWD:/build menci/archlinuxarm /bin/bash /build/entrypoint.sh
+        docker run -t -v $PWD:/build -v /var/git/github.com/steev:/tmp menci/archlinuxarm /bin/bash /build/entrypoint.sh
         ls -l .
       env:
         GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}

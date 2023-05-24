@@ -5,13 +5,12 @@ cd /build
 repo_full=$(cat ./repo)
 repo_owner=$(echo $repo_full | cut -d/ -f1)
 repo_name=$(echo $repo_full | cut -d/ -f2)
-
+echo "seeing what is in /tmp"
+ls /tmp
 pacman-key --init
 pacman -Syu --noconfirm --needed sudo git base-devel wget
 useradd builduser -m
 chown -R builduser:builduser /build
-echo "seeing what is in /tmp"
-ls /tmp
 git config --global --add safe.directory /build
 sudo -u builduser gpg --keyserver keyserver.ubuntu.com --recv-keys 38DBBDC86092693E
 passwd -d builduser

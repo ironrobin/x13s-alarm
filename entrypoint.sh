@@ -6,6 +6,7 @@ repo_full=$(cat ./repo)
 repo_owner=$(echo $repo_full | cut -d/ -f1)
 repo_name=$(echo $repo_full | cut -d/ -f2)
 
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
 pacman -Syu --noconfirm --needed sudo git base-devel wget
 useradd builduser -m

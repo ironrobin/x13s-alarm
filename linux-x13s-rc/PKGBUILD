@@ -5,6 +5,7 @@ buildarch=8
 
 _rcver=6.4
 _rcrel=4
+_branch=lenovo-x13s-v6.4.0-rc4
 
 pkgbase=linux-x13s-rc
 _srcname=linux-${_rcver}-rc${_rcrel}
@@ -17,16 +18,14 @@ url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'vboot-utils' 'dtc')
 options=('!strip')
-source=("${_srcname}::git+https://github.com/steev/linux#branch=lenovo-x13s-v6.4.0-rc4"
-        'config'
+source=('config'
         'kernel.keyblock'
         'kernel_data_key.vbprivk'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('SKIP'
-         'd529ba3be328f5552df4f1bb080a225b'
+md5sums=('d529ba3be328f5552df4f1bb080a225b'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'
@@ -35,6 +34,9 @@ md5sums=('SKIP'
          )
 
 prepare() {
+  echo "Shallow cloning steev's linux repo"
+  git clone --depth=1 https://github.com/steev/linux.git ${_srcname} -b ${_branch}
+
   cd $_srcname
 
   echo "Setting version..."

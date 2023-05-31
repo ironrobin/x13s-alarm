@@ -14,7 +14,7 @@ pkgbase=mesa
 pkgname=('vulkan-mesa-layers' 'opencl-mesa' 'vulkan-radeon' 'vulkan-swrast' 'vulkan-virtio' 'vulkan-broadcom' 'vulkan-panfrost' 'vulkan-freedreno' 'libva-mesa-driver' 'mesa-vdpau' 'mesa')
 pkgdesc="An open-source implementation of the OpenGL specification"
 pkgver=23.1.1
-pkgrel=0
+pkgrel=1
 arch=('x86_64' 'aarch64')
 makedepends=('python-mako' 'libxml2' 'libx11' 'xorgproto' 'libdrm' 'libxshmfence' 'libxxf86vm'
              'libxdamage' 'libvdpau' 'libva' 'wayland' 'wayland-protocols' 'zstd' 'elfutils' 'llvm'
@@ -25,19 +25,11 @@ url="https://www.mesa3d.org/"
 license=('custom')
 options=('!lto' '!debug')
 source=(https://mesa.freedesktop.org/archive/mesa-${pkgver}.tar.xz{,.sig}
-        0001-intel-fs-fix-scheduling-of-HALT-instructions.patch
-        0002-egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
-        0003-vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch
-        0004-rusticl-Fix-bindgen-invocation.patch
-        add-a690-support.patch
+        0001-reallocate-on-unshared-export.patch
         LICENSE)
 sha512sums=('ac5522307d75ff71289a62e2e5827edca70a88e028563ed11907504b9727925186893cd40e5948f1f16c29d8ad9fad39012d7569276e2c75be97aef9c106baf8'
             'SKIP'
-            '563bf3bf1407518214b5c30248514233bae0345f15dc15e2a6a8121f75262a09d7c3a15c82d57a133b634ed926c33f214a8911ebf165f25778d2758f2b32e6df'
-            'cdbb46a2f8a2f6512658bd563d4dc789a37f2f088d79e7d06d4248ae114fbd50f06c83440fc6e0e8127f7781b5f4db93381c22a8e878bbee275db6bd6b0370e7'
-            '062a3ce237808479864170c536c9162ac6dbb544b23f261f6b327d8f885a83307bf6801ceccc30a7f911d42df606001f79e71283a0617ac6f862264b8db9c84a'
-            '69d04135a76970b943f7a5968092d1f452aa667d7e3f1076febdb7b0e6917a5032086445a6be21ad7d129b9c421d3a26000d160f4532915a2529e19e645b6a44'
-            '3e5c6d802bf7b9f212f748ff446f7df9d261dd338c922b432b5621ad620a9e2f45c7a20ef08c750233f070e4564a099f9c4a099a3b478ad79c0017f2f2260ff9'
+            'a37c05ef6102dce69037c03d82b2ad781a713e4525a70153e1c0d7c6b559c0c2d960e3d9411a55a7f3ea6d65c360a1c7b68297943cb80bb9e3b0edca7587c997'
             'f9f0d0ccf166fe6cb684478b6f1e1ab1f2850431c06aa041738563eb1808a004e52cdec823c103c9e180f03ffc083e95974d291353f0220fe52ae6d4897fecc7')
 validpgpkeys=('8703B6700E7EE06D7A39B8D6EDAE37B02CEB490D'  # Emil Velikov <emil.l.velikov@gmail.com>
               '946D09B5E4C9845E63075FF1D961C596A7203456'  # Andres Gomez <tanty@igalia.com>
@@ -49,24 +41,10 @@ validpgpkeys=('8703B6700E7EE06D7A39B8D6EDAE37B02CEB490D'  # Emil Velikov <emil.l
 prepare() {
   cd mesa-$pkgver
 
-  # https://gitlab.freedesktop.org/mesa/mesa/-/issues/7110
-  # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20765
-  # patch -Np1 -i ../0001-intel-fs-fix-scheduling-of-HALT-instructions.patch
+  # https://gitlab.freedesktop.org/mesa/mesa/-/issues/9110
+  # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23324
+  patch -Np1 -i ../0001-reallocate-on-unshared-export.patch
 
-  # https://bugs.archlinux.org/task/78137
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=1826583
-  # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21646
-  # patch -Np1 -i ../0002-egl-wayland-Fix-destruction-of-event-queue-with-prox.patch
-
-  # https://bugs.archlinux.org/task/78142
-  # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21647
-  # patch -Np1 -i ../0003-vulkan-wsi-wayland-Fix-destruction-of-event-queue-wi.patch
-  
-  # Fix build failure with rust-bindgen 0.65.1
-  # patch -Np1 -i ../0004-rusticl-Fix-bindgen-invocation.patch
-
-  # Add A60 support for x13s
-  # patch -Np1 -i ../add-a690-support.patch
 }
 
 build() {

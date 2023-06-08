@@ -4,8 +4,8 @@
 buildarch=8
 
 _rcver=6.4
-_rcrel=4
-_branch=lenovo-x13s-v6.4.0-rc4
+_rcrel=5
+_branch=lenovo-x13s-v6.4.0-rc5
 
 pkgbase=linux-x13s-rc
 _srcname=linux-${_rcver}-rc${_rcrel}
@@ -25,7 +25,7 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('58905beb57aad56aad8240d230fe4251'
+md5sums=('bb4bf20639682e65718640d3d5299b34'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

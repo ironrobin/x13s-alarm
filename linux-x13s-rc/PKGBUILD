@@ -4,8 +4,8 @@
 buildarch=8
 
 _rcver=6.4
-_rcrel=6
-_branch=lenovo-x13s-linux-v6.4-rc6
+_rcrel=7
+_branch=lenovo-x13s-v6.4.0-rc7-hot
 
 pkgbase=linux-x13s-rc
 _srcname=linux-${_rcver}-rc${_rcrel}

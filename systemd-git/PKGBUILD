@@ -17,7 +17,7 @@ pkgname=('systemd-git'
 pkgdesc='systemd (git version)'
 pkgver=253.r65143.c507c81ee7
 pkgrel=1
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 url='https://www.github.com/systemd/systemd'
 makedepends=('acl' 'cryptsetup' 'docbook-xsl' 'gperf' 'lz4' 'xz' 'pam' 'libelf'
              'intltool' 'iptables' 'kmod' 'libcap' 'libidn2' 'libgcrypt'

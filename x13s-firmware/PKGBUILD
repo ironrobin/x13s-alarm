@@ -1,7 +1,7 @@
 pkgname="x13s-firmware"
 pkgdesc="ThinkPad X13s firmware"
-pkgver=20230515
-pkgrel=1
+pkgver=20230625
+pkgrel=0
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -14,7 +14,7 @@ _srcdir=linux-firmware
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
         "SC8280XP-LENOVO-X13S-tplg.bin"
         "a690_gmu.bin"
-        "hpnv21.8c"
+        "hpnv21.b8c"
         "board-2.bin"
         "qcvss8280.mbn"
         )
@@ -49,7 +49,7 @@ package_x13s-firmware() {
   # Install video acceleration support (venus) firmware for X13s
   cp qcvss8280.mbn "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp/LENOVO/21BX
   # Install bluetooth firmware for X13s
-  cp hpnv21.8c "${pkgdir}"/usr/lib/firmware/qca
+  cp hpnv21.b8c "${pkgdir}"/usr/lib/firmware/qca
   # Install gpu firmware for X13s
   cp a690_gmu.bin "${pkgdir}"/usr/lib/firmware/qcom
   # Install sound firmware for X13s

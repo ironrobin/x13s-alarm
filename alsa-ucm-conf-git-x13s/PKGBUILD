@@ -2,8 +2,8 @@
 
 pkgname=alsa-ucm-conf-git-x13s
 pkgbasename="${pkgname%-git}"
-pkgver=1.2.7.2.561.f0904c6.d41d8cd98f00b204e9800998ecf8427e
-pkgrel=1
+pkgver=1.2.9.632.39420b0.63576f077d88a4989b4f0c39b2ed07eb
+pkgrel=0
 
 
 pkgdesc="ALSA Use Case Manager configuration (and topologies), git version"
@@ -12,9 +12,15 @@ conflicts=("alsa-ucm-conf")
 arch=(any)
 url="https://alsa-project.org/"
 license=(BSD)
-source=("${pkgbasename}::git+https://git.linaro.org/people/srinivas.kandagatla/alsa-ucm-conf.git#branch=x13s")
-sha512sums=('SKIP')
-b2sums=('SKIP')
+source=("${pkgbasename}::git+https://github.com/Srinivas-Kandagatla/alsa-ucm-conf.git#branch=x13s-volume-fixes"
+        "unfix-device-numbers.patch" 
+        )
+sha512sums=('SKIP'
+            'SKIP'
+            )   
+b2sums=('SKIP'
+        'SKIP'
+        )
 
 pkgver() {
     cd "${pkgbasename}"
@@ -53,4 +59,3 @@ package() {
   install -vDm 644 README.md -t "$pkgdir/usr/share/doc/$pkgbasename"
   install -vDm 644 ucm2/README.md -t "$pkgdir/usr/share/doc/$pkgbasename/ucm2"
 }
-

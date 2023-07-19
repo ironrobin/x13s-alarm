@@ -19,7 +19,7 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 
-for i in "linux-x13s" "mutter" "alsa-ucm-conf-x13s" "linux-x13s-archiso" "linux-x13s-rc" "mesa-a690" "x13s-firmware" "x13s-touchscreen-udev" "systemd-git" ; do
+for i in "linux-x13s" "mutter" "alsa-ucm-conf-git-x13s" "linux-x13s-archiso" "linux-x13s-rc" "mesa-a690" "x13s-firmware" "x13s-touchscreen-udev" "systemd-git" ; do
 	status=13
 	git submodule update --init $i
 	cd $i

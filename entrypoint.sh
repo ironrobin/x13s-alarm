@@ -26,7 +26,7 @@ for i in "linux-x13s" "mutter" "alsa-ucm-conf-git-x13s" "linux-x13s-archiso" "li
 
 	# mesa needs Dylan Baker/Eric Engestrom keys
 	echo $i
-	if [ $i == "mesa-a690" ]; then
+	if [ $i == "mesa" ]; then
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 		gpg --homedir /home/builduser/.gnupg --recv-keys 8D8E31AFC32428A6
 	fi

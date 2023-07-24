@@ -3,7 +3,7 @@
 pkgname=alsa-ucm-conf-git-x13s
 pkgbasename="${pkgname%-git}"
 pkgver=1.2.9.632.39420b0.63576f077d88a4989b4f0c39b2ed07eb
-pkgrel=0
+pkgrel=1
 
 
 pkgdesc="ALSA Use Case Manager configuration (and topologies), git version"
@@ -41,14 +41,15 @@ pkgver() {
 }
 
 prepare() {
-    local _patchfile
-    for _patchfile in "${source[@]}"; do
-        _patchfile="${_patchfile%%::*}"
-        _patchfile="${_patchfile##*/}"
-        [[ $_patchfile = *.patch ]] || continue
-        echo "Applying patch $_patchfile..."
-        patch --directory="${pkgbasename}" --forward --strip=1 --input="${srcdir}/${_patchfile}"
-    done
+    echo "hi"
+    # local _patchfile
+    # for _patchfile in "${source[@]}"; do
+    #     _patchfile="${_patchfile%%::*}"
+    #     _patchfile="${_patchfile##*/}"
+    #     [[ $_patchfile = *.patch ]] || continue
+    #     echo "Applying patch $_patchfile..."
+    #     patch --directory="${pkgbasename}" --forward --strip=1 --input="${srcdir}/${_patchfile}"
+    # done
 }
 
 package() {

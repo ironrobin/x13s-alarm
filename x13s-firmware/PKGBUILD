@@ -1,7 +1,7 @@
 pkgname="x13s-firmware"
 pkgdesc="ThinkPad X13s firmware"
 pkgver=20230625
-pkgrel=0
+pkgrel=1
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -12,14 +12,14 @@ pkgname=(x13s-firmware)
 _srcdir=linux-firmware
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
-        "SC8280XP-LENOVO-X13S-tplg.bin"
+        "audioreach-tplg.bin"
         "a690_gmu.bin"
         "hpnv21.b8c"
         "board-2.bin"
         "qcvss8280.mbn"
         )
 sha256sums=('SKIP'
-            'd983a32e0c873963a75dfd1197a00fa2edadd8455caab9d5d65ec2b51c65d132'
+            'ee911c748deadc0191af50074b26ad177c8a2e78ff00e9578504b71d5d27b08a'
             '163c1e3126d70d36c1ad9db5dd3721969b164f9623f6a7db773677882e40936d'
             '8b6a1e2d4233e0a17d5c2dce568386fe9c7974b872da47900242c3485f57d0f7'
             '78ba51c433e4bf531f6565ab51928d41fc283289074547cabbbb489eb37b3e48'
@@ -53,7 +53,7 @@ package_x13s-firmware() {
   # Install gpu firmware for X13s
   cp a690_gmu.bin "${pkgdir}"/usr/lib/firmware/qcom
   # Install sound firmware for X13s
-  cp SC8280XP-LENOVO-X13S-tplg.bin "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp
+  cp audioreach-tplg.bin "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp/LENOVO/21BX
   # Create a symlink for X13s's WiFi card
   # Copy the new x13s board file to the ath11k firmware directory
   cp board-2.bin "${pkgdir}"/usr/lib/firmware/ath11k/WCN6855/hw2.0/

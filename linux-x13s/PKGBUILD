@@ -59,7 +59,7 @@ build() {
 
   # build!
   unset LDFLAGS
-  make ${MAKEFLAGS} Image Image.gz modules
+  make ${MAKEFLAGS} linux linux.gz modules
   # Generate device tree blobs with symbols to support applying device tree overlays in U-Boot
   make ${MAKEFLAGS} DTC_FLAGS="-@" dtbs
 }
@@ -78,8 +78,8 @@ _package() {
   local kernver="$(<version)"
   local modulesdir="$pkgdir/usr/lib/modules/$kernver"
 
-  echo "Installing boot image and dtbs..."
-  install -Dm644 arch/arm64/boot/Image{,.gz} -t "${pkgdir}/boot"
+  echo "Installing boot linux and dtbs..."
+  install -Dm644 arch/arm64/boot/linux{,.gz} -t "${pkgdir}/boot"
   #make INSTALL_DTBS_PATH="${pkgdir}/boot/dtbs" dtbs_install
   # We just need the X13s dtb
   install -Dm644 arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb -t "${pkgdir}/boot"

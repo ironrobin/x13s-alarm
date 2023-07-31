@@ -7,8 +7,8 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=44.1+r2+g82bd40dcb
-pkgrel=1
+pkgver=44.3
+pkgrel=0
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64 aarch64)
@@ -20,6 +20,7 @@ depends=(
   gnome-settings-daemon
   graphene
   gsettings-desktop-schemas
+  iio-sensor-proxy
   lcms2
   libcanberra
   libgudev
@@ -49,13 +50,15 @@ checkdepends=(
   wireplumber
   zenity
 )
-_commit=82bd40dcbcc3601da755678778f033bd9a30286d  # gnome-44
-source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
-        "meta-kms-better-handling-for-universal-planes.patch"
-       )
-b2sums=('SKIP'
-        'SKIP'
-       )
+_commit=99d83f2985483bc192e1271665c442c7c480a588  # tags/44.3^0
+source=(
+  "git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
+  "meta-kms-better-handling-for-universal-planes.patch"
+)
+b2sums=(
+  'SKIP'
+  'SKIP'
+)
 
 pkgver() {
   cd mutter
@@ -64,6 +67,10 @@ pkgver() {
 
 prepare() {
   cd mutter
+  # Unbreak tests with Mesa 23.1
+  # https://gitlab.gnome.org/GNOME/mutter/-/issues/2848
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3047
+  git cherry-pick -n '5a83e8ef8250526a40e8e69c^..d65883e0d7d70987e3888b86'
   patch -Np1 -i ../meta-kms-better-handling-for-universal-planes.patch
 }
 
@@ -98,10 +105,10 @@ _check() (
   meson test -C build --print-errorlogs -t 3
 )
 
-#check() {
-#  dbus-run-session xvfb-run -s '-nolisten local +iglx -noreset' \
-#    bash -c "$(declare -f _check); _check"
-#}
+# check() {
+#   dbus-run-session xvfb-run -s '-nolisten local +iglx -noreset' \
+#     bash -c "$(declare -f _check); _check"
+# }
 
 _pick() {
   local p="$1" f d; shift

@@ -1,7 +1,21 @@
+notice_linux() {
+  # Provide an update warning
+  echo ""
+  echo "ATTENTION!"
+  echo "ACTION REQUIRED: This package now ships a compressed kernel which uses a different name (vmlinuz-linux)."
+  echo "Please sure that you update your bootloader config."
+  echo "E.g., if using GRUB2, run this command:"
+  echo "# sudo grub-mkconfig -o /boot/grub/grub.cfg"
+  echo "E.g., if using systemd-boot, update linux line of your entry conf; change Image -> vmlinuz-linux"
+  echo ""
+}
+
 post_upgrade() {
   if findmnt --fstab -uno SOURCE /boot &>/dev/null && ! mountpoint -q /boot; then
     echo "WARNING: /boot appears to be a separate partition but is not mounted."
   fi
+  # Provide warning / instructions
+  notice_linux
 }
 
 post_remove() {

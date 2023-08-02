@@ -9,7 +9,7 @@ _srcname=linux-6.4
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver="6.4.7"
-pkgrel=0
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -59,7 +59,7 @@ build() {
 
   # build!
   unset LDFLAGS
-  make ${MAKEFLAGS} Image.gz modules
+  make ${MAKEFLAGS} Image Image.gz modules
   # Generate device tree blobs with symbols to support applying device tree overlays in U-Boot
   make ${MAKEFLAGS} DTC_FLAGS="-@" dtbs
 }
@@ -80,6 +80,7 @@ _package() {
 
   echo "Installing boot image (compressed) and dtbs..."
   install -Dm644 arch/arm64/boot/Image.gz -T "${pkgdir}/boot/vmlinuz-linux"
+  install -Dm644 arch/arm64/boot/Image -T "${pkgdir}/boot/vmlinux"
   #make INSTALL_DTBS_PATH="${pkgdir}/boot/dtbs" dtbs_install
   # We just need the X13s dtb
   install -Dm644 arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb -t "${pkgdir}/boot"

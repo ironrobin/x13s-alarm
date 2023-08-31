@@ -7,7 +7,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=44.3
+pkgver=44.4
 pkgrel=0
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -50,7 +50,7 @@ checkdepends=(
   wireplumber
   zenity
 )
-_commit=99d83f2985483bc192e1271665c442c7c480a588  # tags/44.3^0
+_commit=f1fc9e176200cd14f1b5bba4359ee54a0587f586  # tags/44.4^0
 source=(
   "git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
   "meta-kms-better-handling-for-universal-planes.patch"

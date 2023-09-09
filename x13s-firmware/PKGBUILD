@@ -1,7 +1,7 @@
 pkgname="x13s-firmware"
 pkgdesc="ThinkPad X13s firmware"
 pkgver=20230804
-pkgrel=1
+pkgrel=2
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -15,14 +15,12 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firm
         "audioreach-tplg.bin"
         "a690_gmu.bin"
         "hpnv21.b8c"
-        "board-2.bin"
         "qcvss8280.mbn"
         )
 sha256sums=('SKIP'
             'ee911c748deadc0191af50074b26ad177c8a2e78ff00e9578504b71d5d27b08a'
             '163c1e3126d70d36c1ad9db5dd3721969b164f9623f6a7db773677882e40936d'
             '8b6a1e2d4233e0a17d5c2dce568386fe9c7974b872da47900242c3485f57d0f7'
-            'c326b933d0a464b3191bb22393f40b71fcbfaddd23a8f2967fa9d968dcd27ff0'
             'c81f3f060f69c5940121fe6e36da20d9c864d78b3bbffe361ec8878a7f9bd7b3'
             )
 
@@ -55,8 +53,6 @@ package_x13s-firmware() {
   # Install sound firmware for X13s
   cp audioreach-tplg.bin "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp/LENOVO/21BX
   # Create a symlink for X13s's WiFi card
-  # Copy the new x13s board file to the ath11k firmware directory
-  cp board-2.bin "${pkgdir}"/usr/lib/firmware/ath11k/WCN6855/hw2.0/
   cd "${pkgdir}"/usr/lib/firmware/ath11k/WCN6855
   ln -s hw2.0/ hw2.1
 }

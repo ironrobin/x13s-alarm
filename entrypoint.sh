@@ -29,8 +29,6 @@ for i in "linux-x13s" "mutter" "alsa-ucm-conf-git-x13s" "linux-x13s-archiso" "li
 	if [ $i == "mesa" ]; then
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 		gpg --homedir /home/builduser/.gnupg --recv-keys 8D8E31AFC32428A6
-		echo "Getting llvm version"
-		llvm-config --version
 	fi
 
 	for i in $(sudo -u builduser makepkg --packagelist); do

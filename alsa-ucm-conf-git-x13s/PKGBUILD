@@ -2,8 +2,8 @@
 
 pkgname=alsa-ucm-conf-git-x13s
 pkgbasename="${pkgname%-git}"
-pkgver=1.2.9.632.39420b0.63576f077d88a4989b4f0c39b2ed07eb
-pkgrel=1
+pkgver=1.2.9.638.42a4d4b.95302e6eb836bb2b070eea046d70406d
+pkgrel=0
 
 
 pkgdesc="ALSA Use Case Manager configuration (and topologies), git version"
@@ -13,7 +13,7 @@ arch=(any)
 url="https://alsa-project.org/"
 license=(BSD)
 source=("${pkgbasename}::git+https://github.com/Srinivas-Kandagatla/alsa-ucm-conf.git#branch=x13s-volume-fixes"
-        "unfix-device-numbers.patch" 
+        "set-digital-gain-at-0dB.patch"
         )
 sha512sums=('SKIP'
             'SKIP'
@@ -42,14 +42,14 @@ pkgver() {
 
 prepare() {
     echo "hi"
-    # local _patchfile
-    # for _patchfile in "${source[@]}"; do
-    #     _patchfile="${_patchfile%%::*}"
-    #     _patchfile="${_patchfile##*/}"
-    #     [[ $_patchfile = *.patch ]] || continue
-    #     echo "Applying patch $_patchfile..."
-    #     patch --directory="${pkgbasename}" --forward --strip=1 --input="${srcdir}/${_patchfile}"
-    # done
+    local _patchfile
+    for _patchfile in "${source[@]}"; do
+        _patchfile="${_patchfile%%::*}"
+        _patchfile="${_patchfile##*/}"
+        [[ $_patchfile = *.patch ]] || continue
+        echo "Applying patch $_patchfile..."
+        patch --directory="${pkgbasename}" --forward --strip=1 --input="${srcdir}/${_patchfile}"
+    done
 }
 
 package() {

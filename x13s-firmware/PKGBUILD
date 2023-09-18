@@ -1,7 +1,7 @@
 pkgname="x13s-firmware"
 pkgdesc="ThinkPad X13s firmware"
 pkgver=20230804
-pkgrel=2
+pkgrel=3
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -52,6 +52,9 @@ package_x13s-firmware() {
   cp a690_gmu.bin "${pkgdir}"/usr/lib/firmware/qcom
   # Install sound firmware for X13s
   cp audioreach-tplg.bin "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp/LENOVO/21BX
+  # Create a symlink for X13s sound firmware
+  cd "${pkgdir}"/usr/lib/firmware/qcom/sc8280xp
+  ln -s LENOVO/21BX/audioreach-tplg.bin SC8280XP-LENOVO-X13S-tplg.bin
   # Create a symlink for X13s's WiFi card
   cd "${pkgdir}"/usr/lib/firmware/ath11k/WCN6855
   ln -s hw2.0/ hw2.1

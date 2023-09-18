@@ -91,8 +91,13 @@ _package() {
   echo "Installing modules..."
   make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
 
-  # remove build and source links
-  rm "$modulesdir"/{source,build}
+  # remove build and source links if they exist
+  if [[ -e $modulesdir/source ]]; then
+    rm "$modulesdir"/source
+  fi
+  if [[ -e $modulesdir/build ]]; then
+    rm "$modulesdir"/build
+  fi
 
   # sed expression for following substitutions
   local _subst="

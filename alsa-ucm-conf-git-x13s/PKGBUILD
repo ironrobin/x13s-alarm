@@ -2,7 +2,7 @@
 
 pkgname=alsa-ucm-conf-git-x13s
 pkgbasename="${pkgname%-git}"
-pkgver=1.2.10.643.998018a.d41d8cd98f00b204e9800998ecf8427e
+pkgver=1.2.10.644.e8c3e77.d41d8cd98f00b204e9800998ecf8427e
 pkgrel=0
 
 

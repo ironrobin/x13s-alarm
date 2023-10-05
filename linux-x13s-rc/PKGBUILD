@@ -1,5 +1,5 @@
 # AArch64 multi-platform
-# Maintainer: Alex R <alex at ironrobin dot net>
+# Maintainer: Alex R <alex at ironrobin dot net >
 
 buildarch=8
 

@@ -89,26 +89,26 @@ build() {
   meson compile -C build
 }
 
-check() (
-  export XDG_RUNTIME_DIR="$PWD/rdir" GSETTINGS_SCHEMA_DIR="$PWD/build/data"
-  mkdir -p -m 700 "$XDG_RUNTIME_DIR"
-  glib-compile-schemas "$GSETTINGS_SCHEMA_DIR"
+# check() (
+#   export XDG_RUNTIME_DIR="$PWD/rdir" GSETTINGS_SCHEMA_DIR="$PWD/build/data"
+#   mkdir -p -m 700 "$XDG_RUNTIME_DIR"
+#   glib-compile-schemas "$GSETTINGS_SCHEMA_DIR"
 
-  export NO_AT_BRIDGE=1 GTK_A11Y=none
-  export MUTTER_DEBUG_DUMMY_MODE_SPECS="800x600@10.0"
+#   export NO_AT_BRIDGE=1 GTK_A11Y=none
+#   export MUTTER_DEBUG_DUMMY_MODE_SPECS="800x600@10.0"
 
-  pipewire &
-  _p1=$!
+#   pipewire &
+#   _p1=$!
 
-  wireplumber &
-  _p2=$!
+#   wireplumber &
+#   _p2=$!
 
-  trap "kill $_p1 $_p2; wait" EXIT
+#   trap "kill $_p1 $_p2; wait" EXIT
 
   # xvfb-run -s '-nolisten local +iglx -noreset' \
   #   mutter/src/tests/meta-dbus-runner.py --launch=pipewire --launch=wireplumber \
   #   meson test -C build --print-errorlogs -t 5 --setup plain
-)
+# )
 
 _pick() {
   local p="$1" f d; shift

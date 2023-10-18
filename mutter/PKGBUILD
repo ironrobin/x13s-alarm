@@ -7,7 +7,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=45.0
+pkgver=45.0+r57+g909cc6c24
 pkgrel=0
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -63,6 +63,7 @@ b2sums=(
   'SKIP'
 )
 
+# Run locally and update pkgver
 pkgver() {
   cd mutter
   git describe --tags | sed 's/[^-]*-g/r&/;s/-/+/g'
@@ -70,10 +71,6 @@ pkgver() {
 
 prepare() {
   cd mutter
-  # Unbreak tests with Mesa 23.1
-  # https://gitlab.gnome.org/GNOME/mutter/-/issues/2848
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3047
-  # git cherry-pick -n '5a83e8ef8250526a40e8e69c^..d65883e0d7d70987e3888b86'
   patch -Np1 -i ../meta-kms-better-handling-for-universal-planes.patch
 }
 

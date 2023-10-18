@@ -70,7 +70,7 @@ prepare() {
   # Unbreak tests with Mesa 23.1
   # https://gitlab.gnome.org/GNOME/mutter/-/issues/2848
   # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3047
-  git cherry-pick -n '5a83e8ef8250526a40e8e69c^..d65883e0d7d70987e3888b86'
+  # git cherry-pick -n '5a83e8ef8250526a40e8e69c^..d65883e0d7d70987e3888b86'
   patch -Np1 -i ../meta-kms-better-handling-for-universal-planes.patch
 }
 

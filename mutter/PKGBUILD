@@ -64,10 +64,10 @@ b2sums=(
 )
 
 # Run locally and update pkgver
-pkgver() {
-  cd mutter
-  git describe --tags | sed 's/[^-]*-g/r&/;s/-/+/g'
-}
+# pkgver() {
+#   cd mutter
+#   git describe --tags | sed 's/[^-]*-g/r&/;s/-/+/g'
+# }
 
 prepare() {
   cd mutter

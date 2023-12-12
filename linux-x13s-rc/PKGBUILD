@@ -3,16 +3,16 @@
 
 buildarch=8
 
-_rcver=6.6
-_rcrel=4
-_branch=lenovo-x13s-v6.6.0-rc4
+_rcver=6.7
+_rcrel=5
+_branch=lenovo-x13s-v6.7-rc5
 
 pkgbase=linux-x13s-rc
 _srcname=linux-${_rcver}-rc${_rcrel}
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver=${_rcver}.rc${_rcrel}
-pkgrel=1
+pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -25,7 +25,7 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('116b5817471e89165b86d7f78fb703f1'
+md5sums=('66db2a2c341982c948db21bcf6e01a9f'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

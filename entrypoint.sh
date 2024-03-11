@@ -8,7 +8,7 @@ repo_name=$(echo $repo_full | cut -d/ -f2)
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
-pacman -Syu --noconfirm --needed sudo git base-devel wget rust
+pacman -Syu --noconfirm --needed sudo git base-devel wget
 useradd builduser -m
 chown -R builduser:builduser /build
 git config --global --add safe.directory /build

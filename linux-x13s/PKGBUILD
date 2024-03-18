@@ -2,14 +2,14 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=lenovo-x13s-linux-6.8.y
+_branch=lenovo-x13s-linux-6.7.y
 
 pkgbase=linux-x13s
-_srcname=linux-6.8
+_srcname=linux-6.7
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.8.1"
-pkgrel=1
+pkgver="6.7.10"
+pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -22,7 +22,7 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('11c8dae550896178f72791ed05f62bd2'
+md5sums=('7212c60ec4f71d2a09d16e303114a0d3'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

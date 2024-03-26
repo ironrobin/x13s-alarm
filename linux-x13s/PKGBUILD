@@ -22,7 +22,7 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('cf068db5882e75afd4eaa1876afcd34b'
+md5sums=('f27cc16e4c86a543032d66ebdd964ee8'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'

@@ -31,7 +31,7 @@ md5sums=('7634f5812ea4e6c83d00ce0950772716'
          )
 
 prepare() {
-  MAKEFLAGS=-j8
+  #MAKEFLAGS=-j8
   echo "Shallow cloning steev's linux repo"
   git clone --depth=1 https://github.com/steev/linux.git ${_srcname} -b ${_branch}
 

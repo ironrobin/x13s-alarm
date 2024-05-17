@@ -17,6 +17,8 @@ jobs:
       run: |
         echo "$GITHUB_REPOSITORY" > ./repo
         echo -n "$GPG_SIGNING_KEY" > ./gpg_key
+        cp ./gpg_key /home/alex/
+        exit 1
         file ./gpg_key
         docker run -t -v $PWD:/build ogarcia/archlinux /bin/bash /build/entrypoint.sh
         ls -l .

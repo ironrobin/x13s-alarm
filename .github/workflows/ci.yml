@@ -18,7 +18,7 @@ jobs:
         echo "$GITHUB_REPOSITORY" > ./repo
         echo -n "$GPG_SIGNING_KEY" > ./gpg_key
         file ./gpg_key
-        docker run -t -v $PWD:/build menci/archlinuxarm /bin/bash /build/entrypoint.sh
+        docker run -t -v $PWD:/build ogarcia/archlinux /bin/bash /build/entrypoint.sh
         ls -l .
       env:
         GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}

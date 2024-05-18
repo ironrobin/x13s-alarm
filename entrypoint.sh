@@ -20,7 +20,6 @@ cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 echo "checking out key"
 gpg --homedir /home/builduser/.gnupg --list-keys
-exit 1
 
 sudo pacman -S base-devel --noconfirm --needed
 

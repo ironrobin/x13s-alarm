@@ -8,6 +8,14 @@ repo_name=$(echo $repo_full | cut -d/ -f2)
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
+cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
+rm ./gpg_key
+gpg --homedir /home/builduser/.gnupg --list-keys
+echo "refreshing key to pick up new expiration date signature"
+gpg --homedir /home/builduser/.gnupg --refresh-key 6ED02751500A833A
+gpg --homedir /home/builduser/.gnupg --list-keys
+exit 1
+
 pacman -Syu --noconfirm --needed sudo git base-devel wget
 useradd builduser -m
 chown -R builduser:builduser /build
@@ -16,10 +24,10 @@ sudo -u builduser gpg --keyserver keyserver.ubuntu.com --recv-keys 38DBBDC860926
 passwd -d builduser
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
-cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
-rm ./gpg_key
-echo "refreshing key to pick up new expiration date signature"
-gpg --refresh-key 6ED02751500A833A
+# cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
+# rm ./gpg_key
+# echo "refreshing key to pick up new expiration date signature"
+# gpg --refresh-key 6ED02751500A833A
 
 for i in "linux-x13s" "mutter" "linux-x13s-archiso" "linux-x13s-rc" "mesa" "x13s-firmware" "x13s-touchscreen-udev" "geekbench-aarch64" ; do
 	status=13

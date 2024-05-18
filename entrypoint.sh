@@ -18,6 +18,8 @@ printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
+echo "refreshing key to pick up new expiration date signature"
+gpg --refresh-key 6ED02751500A833A
 
 for i in "linux-x13s" "mutter" "linux-x13s-archiso" "linux-x13s-rc" "mesa" "x13s-firmware" "x13s-touchscreen-udev" "geekbench-aarch64" ; do
 	status=13

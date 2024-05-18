@@ -21,8 +21,8 @@ jobs:
         docker run -t -v $PWD:/build ogarcia/archlinux /bin/bash /build/entrypoint.sh
         ls -l .
       env:
-        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-        
+        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY_2024 }}
+
     - name: generate tag
       id: tag
       run: |

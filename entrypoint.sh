@@ -8,7 +8,7 @@ repo_name=$(echo $repo_full | cut -d/ -f2)
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
-pacman -Syu --noconfirm --needed sudo git base-devel wget
+pacman -Syu --noconfirm --needed sudo git wget
 useradd builduser -m
 chown -R builduser:builduser /build
 git config --global --add safe.directory /build
@@ -21,6 +21,8 @@ rm ./gpg_key
 echo "checking out key"
 gpg --homedir /home/builduser/.gnupg --list-keys
 exit 1
+
+sudo pacman -S base-devel --noconfirm --needed
 
 for i in "linux-x13s" "mutter" "linux-x13s-archiso" "linux-x13s-rc" "mesa" "x13s-firmware" "x13s-touchscreen-udev" "geekbench-aarch64" ; do
 	status=13

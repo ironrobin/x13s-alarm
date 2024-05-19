@@ -2,6 +2,7 @@
 set -e
 cd /build
 
+
 repo_full=$(cat ./repo)
 repo_owner=$(echo $repo_full | cut -d/ -f1)
 repo_name=$(echo $repo_full | cut -d/ -f2)

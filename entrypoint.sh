@@ -23,18 +23,10 @@ gpg --homedir /home/builduser/.gnupg --list-keys
 
 sudo pacman -S base-devel --noconfirm --needed
 
-for i in "linux-x13s" "linux-x13s-archiso" "mesa" "x13s-firmware" "x13s-touchscreen-udev" ; do
+for i in "linux-x13s" "linux-x13s-archiso" "x13s-firmware" "x13s-touchscreen-udev" ; do
 	status=13
 	git submodule update --init $i
 	cd $i
-
-	# mesa needs Dylan Baker/Eric Engestrom keys
-	echo $i
-	if [ $i == "mesa" ]; then
-		pacman -S python-mako --noconfirm --needed
-		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
-		gpg --homedir /home/builduser/.gnupg --recv-keys 8D8E31AFC32428A6
-	fi
 
 	for i in $(sudo -u builduser makepkg --packagelist); do
 		package=$(basename $i)

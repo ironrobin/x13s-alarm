@@ -31,6 +31,7 @@ for i in "linux-x13s" "linux-x13s-archiso" "mesa" "x13s-firmware" "x13s-touchscr
 	# mesa needs Dylan Baker/Eric Engestrom keys
 	echo $i
 	if [ $i == "mesa" ]; then
+		pacman -S python-mako --noconfirm --needed
 		gpg --homedir /home/builduser/.gnupg --recv-keys 4C95FAAB3EB073EC
 		gpg --homedir /home/builduser/.gnupg --recv-keys 8D8E31AFC32428A6
 	fi

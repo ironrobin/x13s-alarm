@@ -2,13 +2,13 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=lenovo-x13s-linux-6.7.y
+_branch=lenovo-x13s-linux-6.9.y
 
 pkgbase=linux-x13s
-_srcname=linux-6.7
+_srcname=linux-6.9
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.7.10"
+pkgver="6.9.1"
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -22,7 +22,7 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         )
-md5sums=('7634f5812ea4e6c83d00ce0950772716'
+md5sums=('45b4854918c2958342cc4e9f983e466e'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '41cb5fef62715ead2dd109dbea8413d6'
@@ -31,7 +31,7 @@ md5sums=('7634f5812ea4e6c83d00ce0950772716'
          )
 
 prepare() {
-  #MAKEFLAGS=-j8
+  MAKEFLAGS=-j8
   echo "Shallow cloning steev's linux repo"
   git clone --depth=1 https://github.com/steev/linux.git ${_srcname} -b ${_branch}
 

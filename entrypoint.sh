@@ -23,7 +23,7 @@ gpg --homedir /home/builduser/.gnupg --list-keys
 
 sudo pacman -S base-devel --noconfirm --needed
 
-for i in "linux-x13s" "mutter" "linux-x13s-archiso" "mesa" "x13s-firmware" "x13s-touchscreen-udev" ; do
+for i in "linux-x13s" "linux-x13s-archiso" "mesa" "x13s-firmware" "x13s-touchscreen-udev" ; do
 	status=13
 	git submodule update --init $i
 	cd $i

@@ -24,6 +24,6 @@ sudo pacman-key --populate archlinuxarm
 ```
 
 ## Note on `linux-x13s`
-For now, you will need `efi=noruntime clk_ignore_unused pd_ignore_unused iommu.passthrough=0 iommu.strict=0` as kernel parameters to boot into the kernel.
+For now, you will need `efi=noruntime clk_ignore_unused pd_ignore_unused iommu.passthrough=0 iommu.strict=0 arm64.nopauth` as kernel parameters to boot into the kernel.
 
 In order to get the battery working, install `pd-mapper` `qmic` `qrtr` `rmtfs` and enable `pd-mapper.service`.

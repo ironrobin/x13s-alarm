@@ -9,7 +9,7 @@ _srcname=linux-6.9
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver="6.9.2"
-pkgrel=0
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -21,13 +21,15 @@ source=('config'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
+        'mkinitcpio.conf.d-x13s.conf'
         )
 md5sums=('0e4b1601a40a0a07bfb530dc8079d801'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
-         '41cb5fef62715ead2dd109dbea8413d6'
+         '3e96ad061f13b77e8f200ee6fb5008b8'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
+         '431651c2d70b72482d5012b5eaf6c3e5'
          )
 
 prepare() {
@@ -106,6 +108,10 @@ _package() {
   # install mkinitcpio preset file
   sed "${_subst}" ../linux.preset |
     install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.d/${pkgbase}.preset"
+
+  # install mkinitcpio.conf.d-x13s.conf
+  sed "${_subst}" ../mkinitcpio.conf.d-x13s.conf |
+    install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.conf.d/x13s.conf"
 
   # install pacman hooks
   sed "${_subst}" ../60-linux.hook |

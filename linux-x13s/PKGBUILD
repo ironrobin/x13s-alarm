@@ -9,7 +9,7 @@ _srcname=linux-6.9
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver="6.9.2"
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -23,7 +23,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('0e4b1601a40a0a07bfb530dc8079d801'
+md5sums=('c6fa9c7a1bfc643ff918c855aba93307'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '3e96ad061f13b77e8f200ee6fb5008b8'
@@ -35,6 +35,8 @@ md5sums=('0e4b1601a40a0a07bfb530dc8079d801'
 prepare() {
   MAKEFLAGS=-j8
   echo "Shallow cloning steev's linux repo"
+  # if src dir exists, remove it
+  [[ -d ${_srcname} ]] && rm -rf ${_srcname}
   git clone --depth=1 https://github.com/steev/linux.git ${_srcname} -b ${_branch}
 
   cd $_srcname

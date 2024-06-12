@@ -23,7 +23,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('19738c22be051a50721413feb7128f02'
+md5sums=('bfc258adabf8b32fcde8c906c16e41c9'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '3e96ad061f13b77e8f200ee6fb5008b8'

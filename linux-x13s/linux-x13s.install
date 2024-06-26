@@ -5,6 +5,6 @@ post_upgrade() {
 }
 
 post_remove() {
-  rm -f boot/initramfs-linux.img
-  rm -f boot/initramfs-linux-fallback.img
+  rm -f boot/initramfs-linux-x13s.img
+  rm -f boot/initramfs-linux-x13s-fallback.img
 }

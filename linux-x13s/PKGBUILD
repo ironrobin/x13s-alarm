@@ -2,13 +2,13 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=lenovo-x13s-linux-6.9.y
+_branch=lenovo-x13s-linux-6.10.y
 
 pkgbase=linux-x13s
-_srcname=linux-6.9
+_srcname=linux-6.10
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.9.5"
+pkgver="6.10.0"
 pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -23,7 +23,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('d0f38d587594c2f112cb38aca67d04f0'
+md5sums=('d0434f3fa3e9a149d6c87275ebb5e550'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '593dacde485356f1ba746658d70b82d9'

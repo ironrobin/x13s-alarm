@@ -91,7 +91,7 @@ _package() {
   install -Dm644 arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb -t "${pkgdir}/boot"
 
   echo "Installing modules..."
-  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
 
   # remove build and source links if they exist
   if [[ -L "$modulesdir"/source ]]; then

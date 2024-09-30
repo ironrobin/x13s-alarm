@@ -131,6 +131,7 @@ x13s_options = {
     "CONFIG_USB_SISUSBVGA": "n",
     "CONFIG_USB_EHCI_TT_NEWSCHED": "y",
     "CONFIG_BCM_SBA_RAID": "n",
+    "CONFIG_NETFS_DEBUG": "n",
 }
 leftovers = []
 for key in x13s_options:

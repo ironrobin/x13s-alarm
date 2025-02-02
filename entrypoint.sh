@@ -9,7 +9,11 @@ repo_name=$(echo $repo_full | cut -d/ -f2)
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
-pacman -Syu --noconfirm --needed sudo git wget
+pacman -Syu --noconfirm --needed sudo git wget python
+which python
+which python3
+sudo ln -s /usr/bin/python3 /usr/bin/python
+exit 1
 useradd builduser -m
 chown -R builduser:builduser /build
 git config --global --add safe.directory /build

@@ -44,6 +44,7 @@ for i in "linux-x13s" "linux-x13s-archiso" "x13s-firmware" ; do
 done
 
 cp */*.pkg.tar.* ./
+gpg --list-keys
 repo-add --sign ./$repo_owner-x13s.db.tar.gz ./*.pkg.tar.xz
 
 for i in *.db *.files; do

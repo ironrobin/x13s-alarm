@@ -9,6 +9,9 @@ repo_name=$(echo $repo_full | cut -d/ -f2)
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
+whoami
+pwd
+ls
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 exit 1
 rm ./gpg_key

@@ -13,7 +13,7 @@ pacman -Syu --noconfirm --needed sudo git wget python
 useradd builduser -m
 chown -R builduser:builduser /build
 git config --global --add safe.directory /build
-sudo -u builduser gpg --keyserver keyserver.ubuntu.com --recv-keys 38DBBDC86092693E
+sudo -u builduser gpg --recv-keys 38DBBDC86092693E
 passwd -d builduser
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
@@ -21,7 +21,6 @@ cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 echo "checking out key"
 gpg --homedir /home/builduser/.gnupg --list-keys
-exit 1
 
 sudo pacman -S base-devel --noconfirm --needed
 

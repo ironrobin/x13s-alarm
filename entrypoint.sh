@@ -23,8 +23,7 @@ rm ./gpg_key
 echo "checking out buildusers key"
 gpg --homedir /home/builduser/.gnupg --list-keys
 echo "checking out root key"
-
-gpg --homedir ~/./gnupg --list-keys
+gpg --homedir /root/.gnupg --list-keys
 
 sudo pacman -S base-devel --noconfirm --needed
 

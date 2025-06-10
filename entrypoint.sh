@@ -17,12 +17,13 @@ sudo -u builduser gpg --recv-keys 38DBBDC86092693E
 passwd -d builduser
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
-cat ./gpg_key | base64 --decode | gpg --homedir ~/./gnupg --import
+cat ./gpg_key | base64 --decode | gpg --homedir /root/.gnupg --import
 cat ./gpg_key | base64 --decode | gpg --homedir /home/builduser/.gnupg --import
 rm ./gpg_key
 echo "checking out buildusers key"
 gpg --homedir /home/builduser/.gnupg --list-keys
 echo "checking out root key"
+
 gpg --homedir ~/./gnupg --list-keys
 
 sudo pacman -S base-devel --noconfirm --needed

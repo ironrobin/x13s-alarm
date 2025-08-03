@@ -50,6 +50,7 @@ x13s_options = {
     "CONFIG_IP_NF_TARGET_REDIRECT": "n",
     # Turn on regularly used filystems
     "CONFIG_EROFS_FS": "y",
+    "CONFIG_SQUASHFS": "y",
     "CONFIG_XFS_FS": "m",
     "CONFIG_XFS_SUPPORT_V4": "y",
     "CONFIG_XFS_SUPPORT_ASCII_CI": "y",

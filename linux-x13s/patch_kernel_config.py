@@ -51,6 +51,7 @@ x13s_options = {
     # Turn on regularly used filystems
     "CONFIG_EROFS_FS": "y",
     "CONFIG_SQUASHFS": "y",
+    "CONFIG_SQUASHFS_XZ": "y",
     "CONFIG_XFS_FS": "m",
     "CONFIG_XFS_SUPPORT_V4": "y",
     "CONFIG_XFS_SUPPORT_ASCII_CI": "y",

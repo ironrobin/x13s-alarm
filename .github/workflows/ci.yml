@@ -21,7 +21,7 @@ jobs:
         docker run -t -v $PWD:/build ogarcia/archlinux /bin/bash /build/entrypoint.sh
         ls -l .
       env:
-        IRONROBIN_SIGNING_KEY: ${{ secrets.IRONROBIN_SIGNING_KEY_2025 }}
+        IRONROBIN_SIGNING_KEY: ${{ secrets.IRONROBIN_SIGNING_KEY }}
 
     - name: generate tag
       id: tag

@@ -28,7 +28,8 @@ jobs:
       run: |
         count=$(git rev-list --count HEAD)
         hash=$(git rev-parse --short HEAD)
-        echo "::set-output name=tag::r${count}.${hash}"
+        echo "tag=r$(count).${hash}" >> $GITHUB_OUTPUT
+        
         
     - name: Print sha512sums
       run: sha512sum */*.pkg.tar.*

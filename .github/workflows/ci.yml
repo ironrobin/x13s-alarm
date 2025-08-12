@@ -22,14 +22,6 @@ jobs:
         ls -l .
       env:
         IRONROBIN_SIGNING_KEY: ${{ secrets.IRONROBIN_SIGNING_KEY }}
-
-    - name: generate tag
-      id: tag
-      run: |
-        count=$(git rev-list --count HEAD)
-        hash=$(git rev-parse --short HEAD)
-        echo "tag=r$(count).${hash}" >> $GITHUB_OUTPUT
-        
         
     - name: Print sha512sums
       run: sha512sum */*.pkg.tar.*
@@ -51,9 +43,7 @@ jobs:
           ${{ github.workspace }}/*.pkg.tar.*
           ${{ github.workspace }}/*-x13s.files*
           ${{ github.workspace }}/*-x13s.db*
-        tag_name: packages #${{ steps.tag.outputs.tag }}
-          #draft: ${{ contains(github.event.head_commit.message, '[draft]') }}
-          #prerelease: ${{ contains(github.event.head_commit.message, '[pre]') }}
-          #generate_release_notes: true
+        tag_name: packages 
+
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

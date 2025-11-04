@@ -2,14 +2,14 @@
 # Maintainer: Alex Robinson <alex@ironrobin.net>
 
 buildarch=8
-_branch=lenovo-x13s-linux-6.16.y
+_branch=lenovo-x13s-linux-6.17.y
 
 pkgbase=linux-x13s
-_srcname=linux-6.16
+_srcname=linux-6.17
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.16.9"
-pkgrel=1
+pkgver="6.17.5"
+pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -23,7 +23,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('b2fa7fb3a8bd2e0794bbdcbcbb35744e'
+md5sums=('333a9a86f19206587d50a52f53b9adcf'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '593dacde485356f1ba746658d70b82d9'

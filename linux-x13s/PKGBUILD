@@ -46,7 +46,6 @@ md5sums=('54729116fa749d5e844302ac4ddcd891'
          '89c97afa8d08700572bc02b88bf4b3e8')
 
 prepare() {
-  MAKEFLAGS=-j12
   echo "Shallow cloning steev's linux repo"
   # if src dir exists, remove it
   [[ -d ${_srcname} ]] && rm -rf ${_srcname}

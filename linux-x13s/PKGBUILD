@@ -2,18 +2,32 @@
 # Maintainer: Alex Robinson <alex@ironrobin.net>
 
 buildarch=8
-_branch=lenovo-x13s-linux-6.17.y
+_branch=lenovo-x13s-linux-6.18.y
 
 pkgbase=linux-x13s
-_srcname=linux-6.17
+_srcname=linux-6.18
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.17.7"
+pkgver="6.18.0"
 pkgrel=0
+
+case "$CARCH" in
+  aarch64)
+    _arch=arm64
+    _cross=aarch64-linux-gnu-
+    arch=('aarch64')
+    ;;
+  x86_64)
+    _arch=x86_64
+    _cross=""
+    arch=('x86_64')
+    ;;
+esac
+
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'vboot-utils' 'dtc')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=('config'
         'kernel.keyblock'
@@ -23,16 +37,16 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('c83d8eaf8112c979c5f88356c0c81042'
+md5sums=('54729116fa749d5e844302ac4ddcd891'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '593dacde485356f1ba746658d70b82d9'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
-         '431651c2d70b72482d5012b5eaf6c3e5')
+         '89c97afa8d08700572bc02b88bf4b3e8')
 
 prepare() {
-  MAKEFLAGS=-j8
+  MAKEFLAGS=-j12
   echo "Shallow cloning steev's linux repo"
   # if src dir exists, remove it
   [[ -d ${_srcname} ]] && rm -rf ${_srcname}
@@ -56,6 +70,8 @@ prepare() {
 
 build() {
   cd ${_srcname}
+  export ARCH="$_arch"
+  export CROSS_COMPILE="$_cross"
 
   # get kernel version
   make prepare
@@ -87,6 +103,8 @@ _package() {
   install=${pkgname}.install
 
   cd $_srcname
+  export ARCH="$_arch"
+  export CROSS_COMPILE="$_cross"
   local kernver="$(<version)"
   local modulesdir="$pkgdir/usr/lib/modules/$kernver"
 

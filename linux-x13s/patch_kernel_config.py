@@ -29,6 +29,8 @@ x13s_options = {
     "CONFIG_PHY_QCOM_QMP": "y",
     "CONFIG_PHY_QCOM_QMP_PCIE": "y",
     "CONFIG_PHY_QCOM_QMP_PCIE_8996": "y",
+    "CONFIG_PCIE_QCOM_COMMON": "y",
+    "CONFIG_PCIE_QCOM": "y",
     "CONFIG_PHY_QCOM_QMP_UFS": "y",
     "CONFIG_PHY_QCOM_QMP_USB": "y",
     "CONFIG_PHY_QCOM_QUSB2": "y",

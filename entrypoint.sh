@@ -48,7 +48,7 @@ done
 
 cp */*.pkg.tar.* ./
 gpg --list-keys
-repo-add --sign ./$repo_owner-x13s.db.tar.gz ./*.pkg.tar.xz
+repo-add --sign ./$repo_owner-x13s.db.tar.gz ./*.pkg.tar.zst
 
 for i in *.db *.files; do
 cp --remove-destination $(readlink $i) $i

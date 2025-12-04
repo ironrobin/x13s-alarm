@@ -18,7 +18,7 @@ jobs:
         echo "$GITHUB_REPOSITORY" > ./repo
         echo -n "$IRONROBIN_SIGNING_KEY" > ./gpg_key
         file ./gpg_key
-        docker run -t -v $PWD:/build archlinux/base-devel /bin/bash /build/entrypoint.sh
+        docker run -t -v $PWD:/build archlinux:latest /bin/bash /build/entrypoint.sh
         ls -l .
       env:
         IRONROBIN_SIGNING_KEY: ${{ secrets.IRONROBIN_SIGNING_KEY }}

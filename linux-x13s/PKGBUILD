@@ -23,8 +23,6 @@ case "$CARCH" in
     arch=('x86_64')
     ;;
 esac
-
-arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')

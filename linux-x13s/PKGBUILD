@@ -9,13 +9,18 @@ _srcname=linux-6.18
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
 pkgver="6.18.0"
-pkgrel=1
+pkgrel=2
 
 case "$CARCH" in
   aarch64)
     _arch=arm64
-    _cross=aarch64-linux-gnu-
     arch=('aarch64')
+    # If host == target, no cross compiler needed
+    if [[ $(uname -m) == aarch64 ]]; then
+      _cross=""
+    else
+      _cross="aarch64-linux-gnu-"
+    fi
     ;;
   x86_64)
     _arch=x86_64
@@ -35,7 +40,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('54729116fa749d5e844302ac4ddcd891'
+md5sums=('a6f41bfd1a07af1994fe8db872013c44'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '593dacde485356f1ba746658d70b82d9'

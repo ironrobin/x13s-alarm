@@ -46,7 +46,7 @@ md5sums=('a6f41bfd1a07af1994fe8db872013c44'
          '593dacde485356f1ba746658d70b82d9'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
-         '89c97afa8d08700572bc02b88bf4b3e8')
+         '2300ce332b36a73e9ab097888d53c98a')
 
 prepare() {
   echo "Shallow cloning steev's linux repo"

@@ -8,8 +8,8 @@ pkgbase=linux-x13s
 _srcname=linux-6.18
 _kernelname=${pkgbase#linux}
 _desc="ThinkPad X13s (Snapdragon 8cx Gen 3)"
-pkgver="6.18.0"
-pkgrel=3
+pkgver="6.18.12"
+pkgrel=0
 
 case "$CARCH" in
   aarch64)
@@ -40,7 +40,7 @@ source=('config'
         '90-linux.hook'
         'mkinitcpio.conf.d-x13s.conf'
         )
-md5sums=('a6f41bfd1a07af1994fe8db872013c44'
+md5sums=('45a49ec7ef696e55ac3fc3405f87d4d6'
          '61c5ff73c136ed07a7aadbf58db3d96a'
          '584777ae88bce2c5659960151b64c7d8'
          '593dacde485356f1ba746658d70b82d9'

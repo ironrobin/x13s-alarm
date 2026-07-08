@@ -4,9 +4,9 @@
 # Contributor: Anton Hvornum <anton@hvornum.se>
 # Contributor: demostanis worlds <demostanis@protonmail.com>
 
-pkgname=archinstall
+pkgname=archinstall-x13s
 pkgver=4.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Just another guided/automated Arch Linux installer with a twist"
 arch=(any)
 url="https://github.com/archlinux/archinstall"
@@ -52,7 +52,9 @@ makedepends=(
 optdepends=(
   'python-systemd: for systemd-journald support'
 )
-provides=(python-archinstall)
+provides=(archinstall python-archinstall)
+conflicts=(archinstall)
+replaces=(archinstall)
 source=(
   $pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz
   $pkgname-$pkgver.tar.gz.sig::$url/releases/download/$pkgver/$pkgname-$pkgver.tar.gz.sig

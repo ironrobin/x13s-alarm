@@ -5,6 +5,7 @@
 # Contributor: demostanis worlds <demostanis@protonmail.com>
 
 pkgname=archinstall-x13s
+_pkgname=archinstall
 pkgver=4.4
 pkgrel=2
 pkgdesc="Just another guided/automated Arch Linux installer with a twist"
@@ -56,8 +57,8 @@ provides=(archinstall python-archinstall)
 conflicts=(archinstall)
 replaces=(archinstall)
 source=(
-  $pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz
-  $pkgname-$pkgver.tar.gz.sig::$url/releases/download/$pkgver/$pkgname-$pkgver.tar.gz.sig
+  $_pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz
+  $_pkgname-$pkgver.tar.gz.sig::$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.gz.sig
   arm64-grub-limine.patch
 )
 sha512sums=('dda248dae2b7bdf54f79aace926c16469161bc51c1a65e98913d00f42c1722015720c4b3012235c5bd167f40a6c2be0c21a6c9a428c7bd7461ab090f89f191e9'
@@ -69,25 +70,25 @@ b2sums=('28a7e23417987624dca3126df1960aa6e4080ababda30ddf0e3636b721f7c2d4241160a
 validpgpkeys=('8AA2213C8464C82D879C8127D4B58E897A929F2E') # torxed@archlinux.org
 
 prepare() {
-  cd "$pkgname-$pkgver"
+  cd "$_pkgname-$pkgver"
   patch -Np1 -i "$srcdir/arm64-grub-limine.patch"
 }
 
 check() {
-  cd $pkgname-$pkgver
+  cd $_pkgname-$pkgver
 #  pylint .
   ruff check
 }
 
 build() {
-  cd $pkgname-$pkgver
+  cd $_pkgname-$pkgver
   
   python -m build --wheel --no-isolation
   PYTHONDONTWRITEBYTECODE=1 make man -C docs
 }
 
 package() {
-  cd $pkgname-$pkgver
+  cd $_pkgname-$pkgver
   python -m installer --destdir="$pkgdir" dist/*.whl
   install -vDm 644 docs/_build/man/archinstall.1 -t "$pkgdir/usr/share/man/man1/"
 }

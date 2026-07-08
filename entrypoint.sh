@@ -28,7 +28,7 @@ gpg --homedir /root/.gnupg --list-keys
 
 sudo pacman -S aarch64-linux-gnu-binutils aarch64-linux-gnu-gcc base-devel  --noconfirm --needed
 
-for i in "linux-x13s" ; do
+for i in "linux-x13s archinstall-x13s" ; do
 	status=13
 	git submodule update --init $i
 	cd $i

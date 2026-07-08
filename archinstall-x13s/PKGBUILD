@@ -1,0 +1,91 @@
+# Maintainer: Anton Hvornum <torxed@archlinux.org>
+# Maintainer: David Runge <dvzrv@archlinux.org>
+# Maintainer: Giancarlo Razzolini <grazzolini@archlinux.org>
+# Contributor: Anton Hvornum <anton@hvornum.se>
+# Contributor: demostanis worlds <demostanis@protonmail.com>
+
+pkgname=archinstall
+pkgver=4.4
+pkgrel=1
+pkgdesc="Just another guided/automated Arch Linux installer with a twist"
+arch=(any)
+url="https://github.com/archlinux/archinstall"
+license=(GPL-3.0-only)
+depends=(
+  arch-install-scripts
+  btrfs-progs
+  coreutils
+  cryptsetup
+  dosfstools
+  e2fsprogs
+  glibc
+  kbd
+  libcrypt.so
+  libxcrypt
+  pciutils
+  procps-ng
+  python
+  python-cryptography
+  python-pydantic
+  python-pyparted
+  python-textual
+  python-markdown-it-py
+  python-linkify-it-py
+  systemd
+  util-linux
+  xfsprogs
+  lvm2
+  f2fs-tools
+  libfido2
+)
+makedepends=(
+  python-build
+  python-installer
+  python-setuptools
+  python-sphinx
+  python-wheel
+  python-sphinx_rtd_theme
+  python-pylint
+  python-pylint-pydantic
+  ruff
+)
+optdepends=(
+  'python-systemd: for systemd-journald support'
+)
+provides=(python-archinstall)
+source=(
+  $pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz
+  $pkgname-$pkgver.tar.gz.sig::$url/releases/download/$pkgver/$pkgname-$pkgver.tar.gz.sig
+  arm64-grub-limine.patch
+)
+sha512sums=('dda248dae2b7bdf54f79aace926c16469161bc51c1a65e98913d00f42c1722015720c4b3012235c5bd167f40a6c2be0c21a6c9a428c7bd7461ab090f89f191e9'
+            'SKIP'
+            'SKIP')
+b2sums=('28a7e23417987624dca3126df1960aa6e4080ababda30ddf0e3636b721f7c2d4241160a051e12ea438c4f36577d2cf5dee10b7c21c34023f9f4ac1294d6651c8'
+        'SKIP'
+        'SKIP')
+validpgpkeys=('8AA2213C8464C82D879C8127D4B58E897A929F2E') # torxed@archlinux.org
+
+prepare() {
+  cd "$pkgname-$pkgver"
+  patch -Np1 -i "$srcdir/arm64-grub-limine.patch"
+}
+
+check() {
+  cd $pkgname-$pkgver
+#  pylint .
+  ruff check
+}
+
+build() {
+  cd $pkgname-$pkgver
+  
+  python -m build --wheel --no-isolation
+  PYTHONDONTWRITEBYTECODE=1 make man -C docs
+}
+
+package() {
+  cd $pkgname-$pkgver
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -vDm 644 docs/_build/man/archinstall.1 -t "$pkgdir/usr/share/man/man1/"
+}

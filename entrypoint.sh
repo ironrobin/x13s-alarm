@@ -6,8 +6,6 @@ cd /build
 repo_full=$(cat ./repo)
 repo_owner=$(echo $repo_full | cut -d/ -f1)
 repo_name=$(echo $repo_full | cut -d/ -f2)
-echo "Repo owner: $repo_owner"
-echo "Repo name $repo_name"
 sed -i '/\[community\]/d' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman-key --init
@@ -37,8 +35,7 @@ for i in "linux-x13s" "archinstall-x13s" ; do
 
 	for i in $(sudo -u builduser makepkg --packagelist); do
 		package=$(basename $i)
-		echo "package: $package"
-		exit 1
+		package="${package/-x86_64.pkg.tar.zst/-aarch64.pkg.tar.zst}"
 		wget https://github.com/$repo_owner/$repo_name/releases/download/packages/$package \
 			&& echo "Warning: $package already built, did you forget to bump the pkgver and/or pkgrel? It will not be rebuilt."
 	done

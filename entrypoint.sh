@@ -15,6 +15,10 @@ useradd builduser -m
 chown -R builduser:builduser /build
 git config --global --add safe.directory /build
 sudo -u builduser gpg --recv-keys 38DBBDC86092693E
+
+# for archinstall 
+sudo -u builduser gpg --recv-keys D4B58E897A929F2E
+
 passwd -d builduser
 printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 

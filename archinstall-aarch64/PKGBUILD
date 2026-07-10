@@ -4,7 +4,7 @@
 # Contributor: Anton Hvornum <anton@hvornum.se>
 # Contributor: demostanis worlds <demostanis@protonmail.com>
 
-pkgname=archinstall-x13s
+pkgname=archinstall-aarch64
 _pkgname=archinstall
 pkgver=4.4
 pkgrel=2

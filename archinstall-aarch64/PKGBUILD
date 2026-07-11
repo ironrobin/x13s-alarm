@@ -7,7 +7,7 @@
 pkgname=archinstall-aarch64
 _pkgname=archinstall
 pkgver=4.4
-pkgrel=2
+pkgrel=3
 pkgdesc="Just another guided/automated Arch Linux installer with a twist"
 arch=(any)
 url="https://github.com/archlinux/archinstall"

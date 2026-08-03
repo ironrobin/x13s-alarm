@@ -1,5 +1,14 @@
 Packages for the ThinkPad X13s
 
+# This project has moved
+
+**The canonical repository is now on Codeberg:**
+
+https://codeberg.org/ironrobin/aarch64
+
+This GitHub repository is no longer accepting issues or pull requests. Please
+open new issues and submit contributions on Codeberg.
+
 ## Binary repository
 To use pre-built packages, add this section to the end of your `/etc/pacman.conf`:
 
